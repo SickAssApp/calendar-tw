@@ -1,5 +1,5 @@
 const passport = require('passport');
-const googleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
@@ -16,7 +16,7 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(
-  new googleStrategy(
+  new GoogleStrategy(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
@@ -28,13 +28,12 @@ passport.use(
 
       if (existingUser) {
         // There is a record of this user in DB
-        done(null, existingUser);
-      } else {
-        // We don't have this user, create a new record.
-        const user = await new User({ googleId: profile.id }).save()
-        done(null, user);
+        return done(null, existingUser);
       }
-      
+
+      const user = await new User({ googleId: profile.id }).save()
+      done(null, user);
+
     }
   )
 );
