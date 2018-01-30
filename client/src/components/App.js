@@ -6,6 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
+import Calendar from './calendar/Calendar';
 import SurveyNew from './surveys/SurveyNew';
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Header />
           <Route exact path="/" component={Landing} />
           <Route exact path="/surveys" component={Dashboard} />
+          <Route exact path="/calendar" component={Calendar} />
           <Route path="/surveys/new" component={SurveyNew} />
         </div>
       </BrowserRouter>

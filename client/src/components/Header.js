@@ -14,6 +14,8 @@ class Header extends Component {
         );
       default:
         return [
+          <li key="4"><Link to={'/calendar'}>Calendar</Link></li>,
+          <li key="5"><Link to={'/surveys'}>Surveys</Link></li>,
           <li key="1"><Payments /></li>,
           <li key="3" style={{ margin:'0 10px' }}>
             Credits: {this.props.auth.credits}
@@ -28,12 +30,12 @@ class Header extends Component {
       <nav>
         <div className="nav-wrapper">
           <Link
-            to={this.props.auth ? '/surveys' : '/'}
+            to={this.props.auth ? '/calendar' : '/'}
             className="left brand-logo"
           >
             Calendar TW
-          </Link>
-          <ul className="right">
+          </Link>          
+          <ul className="right">            
             {this.renderContent()}
           </ul>
         </div>
